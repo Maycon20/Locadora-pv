@@ -1,6 +1,11 @@
 
 package principal;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 
 public class Login extends javax.swing.JFrame {
 
@@ -115,6 +120,44 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        
+        String login = jTextField1.getText();
+        String senha = jPasswordField1.getText();
+        
+        if (login.equalsIgnoreCase("") || senha.equalsIgnoreCase("")) {
+            
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio",
+            "Video locadora", JOptionPane.WARNING_MESSAGE);
+            
+            jTextField1.setText("");
+            jPasswordField1.setText("");
+
+        } else {
+            if (sql.Logar(login, senha) == true) {
+                new Thread(){
+                    public void run(){
+                        for (int i = 0; i < 101; i++) {
+                            jProgressBar1.setValue(i);
+
+                            try{
+                                Thread.sleep(15);
+                            }catch(Exception ex){
+                            
+                                ex.getMessage();
+                            }
+                        }
+                        new Menu().setVisible(true);
+                        dispose();
+                    }
+                }.start();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha Invalidos", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+                jTextField1.setText("");
+                jPasswordField1.setText("");
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed

@@ -18,7 +18,7 @@ public class ExecuteSQL {
         setCon(con);
     }
     
-    public Connection getcon(){
+    public Connection getCon(){
         return con;
     }
 
