@@ -5,6 +5,13 @@
  */
 package Visao.Excluir;
 
+import Modelo.*;
+import java.util.*;
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Betty
@@ -16,8 +23,23 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
      */
     public ExcluirFuncionario() {
         initComponents();
+        AtualizaCombo();
     }
 
+    public void AtualizaCombo(){
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        
+        lista = sql.ListarComboFuncionario();
+        jComboBox1.addItem(" - ");
+        
+        for (Funcionario b : lista) {
+            jComboBox1.addItem(b.getNome());
+        }
+
+        Conexao.FecharConexao(con);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,9 +87,18 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
 
         jLabel1.setText("Nome:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
 
@@ -122,6 +153,50 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoFuncionario(nome);
+        
+        for (Funcionario b : lista) {
+            int a = b.getCod();
+            jTextField1.setText(""+a);
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String codigo = jTextField1.getText();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        Funcionario a = new Funcionario();
+        
+        if (nome.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nenhum nome selecionado", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+        } else {
+            
+            int b = JOptionPane.showConfirmDialog(null,"Deseja realmente excluir "+ nome +" | "+ codigo +"?", "Video Locadora",
+            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            
+            if (b == 0) {
+                int cod = Integer.parseInt(codigo);
+                a.setNome(nome);
+                a.setCod(cod);
+                sql.Excluir_Funcionario(a);
+                Conexao.FecharConexao(con);
+                dispose();
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
