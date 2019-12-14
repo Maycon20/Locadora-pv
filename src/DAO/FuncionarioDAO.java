@@ -46,4 +46,26 @@ public class FuncionarioDAO extends ExecuteSQL {
         }
         return finalResult;
     }
+    
+     public String Inserir_Funcionario(Funcionario a) {
+        try {
+            String sql = "insert into funcionario values(0,?,?,?)";
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            
+            ps.setString(1, a.getNome());
+            ps.setString(2, a.getLogin());
+            ps.setString(3, a.getSenha());
+            
+            if (ps.executeUpdate() > 0) {
+                return "Inserido com sucesso!";
+            } else {
+                return "Erro ao inserir";
+            }
+            
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+    }
 }
+
+
