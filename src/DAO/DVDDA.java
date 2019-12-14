@@ -14,31 +14,30 @@ import java.sql.SQLException;
  *
  * @author Betty
  */
-public class FilmeDAO extends ExecuteSQL {
+public class DVDDA extends ExecuteSQL {
     
-    public FilmeDAO(Connection con) {
+    public DVDDA(Connection con) {
         super(con);
     }
     
-    public String Inserir_Filme(Filme a){
-        try{
-            String sql = "insert into filme values(0,?,?,?,?,?,?)";
+    public String Inserir_DVD(DVD a) {
+        try {
+            
+            String sql = "insert into dvd values(0,?,?,?,?,?)";
             PreparedStatement ps = getCon().prepareStatement(sql);
             
-            ps.setString(1, a.getTitulo());
-            ps.setInt(2, a.getAno());
-            ps.setString(3, a.getDuracao());
-            ps.setInt(4, a.getCod_categoria());
-            ps.setInt(5, a.getCod_classificacao());
-            ps.setString(6, a.getCapa());
+            ps.setInt(1, a.getCod_filme());
+            ps.setDouble(2, a.getPreco());
+            ps.setString(3, a.getData_compra());
+            ps.setString(4, a.getSituacao());
             
             if (ps.executeUpdate() > 0) {
-                return "Inserido com sucesso";
+                return "Inserido com sucesso!";
             } else {
-                return "Erro ao inserir!";
+                return "Erro ao inserir";
             }
             
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return e.getMessage();
         }
     }

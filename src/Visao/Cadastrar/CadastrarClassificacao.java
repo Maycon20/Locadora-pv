@@ -5,6 +5,12 @@
  */
 package Visao.Cadastrar;
 
+import Modelo.*;
+import DAO.ClassificacaoDAO;
+import DAO.Conexao;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Betty
@@ -131,6 +137,11 @@ public class CadastrarClassificacao extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
@@ -186,6 +197,32 @@ public class CadastrarClassificacao extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String nome = jTextField2.getText();
+        double preco = Double.parseDouble(jTextField3.getText());
+        
+        if (nome.equals("") || jTextField3.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Connection con = Conexao.AbrirConexao();
+            ClassificacaoDAO sql = new ClassificacaoDAO(con);
+            Classificacao a = new Classificacao();
+
+            a.setNome(nome);
+            a.setPreco(preco);
+
+            sql.Inserir_Classificacao(a);
+            Conexao.FecharConexao(con);
+
+            jTextField2.setText("");
+            jTextField3.setText("");
+
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

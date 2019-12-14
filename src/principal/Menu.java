@@ -6,9 +6,16 @@
 package principal;
 
 import Visao.Alterar.*;
+<<<<<<< HEAD
 import Visao.Excluir.*;
 import Visao.Consultar.*;
+=======
+import Visao.Consultar.*;
+import Visao.Excluir.*;
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
 import Visao.Cadastrar.*;
+import Locacao.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -118,8 +125,8 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(186, 186, 186)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -403,135 +410,239 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new AlterarCliente();
+=======
+        new AlterarCliente().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new AlterarClassificacao();
+=======
+        new AlterarClassificacao().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new CadastrarDVD();
+=======
+        new CadastrarDVD().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ExcluirFilme();
 
+=======
+        new ExcluirFilme().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+         int a = JOptionPane.showConfirmDialog(null, "Deseja mesmo cancelar a operação?");
+        if (a == 0) {
+            
+            dispose();
+            
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        new ControleLocacao().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        new ConsultaDevolucao().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ExcluirFuncionario();
+=======
+        new ExcluirFuncionario().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new CadastrarFuncionario();
+=======
+        new CadastrarFuncionario().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new CadastrarCategoria();
+=======
+        new CadastrarCategoria().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new CadastrarCliente();
+=======
+        new CadastrarCliente().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new AlterarFuncionario();
+=======
+        new AlterarFuncionario().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new AlterarCategoria();
+=======
+        new AlterarCategoria().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new AlterarFilme();
+=======
+        new AlterarFilme().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new AlterarDVD();
+=======
+        new AlterarDVD().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ConsultarFuncionario();
+=======
+        new ConsultarFuncionario().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ConsultarCategoria();
+=======
+        new ConsultarCategoria().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ConsultarCliente();
+=======
+        new ConsultarCliente().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ConsultarClassificacao();
+=======
+        new ConsultarClassificacao().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ConsultarFilme();
+=======
+        new ConsultarFilme().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ConsultarDVD();
+=======
+        new ConsultarDVD().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new CadastrarClassificacao();
+=======
+        new CadastrarClassificacao().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new CadastrarFilme();
+=======
+        new CadastrarFilme().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ExcluirCategoria();
+=======
+        new ExcluirCategoria().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ExcluirCliente();
+=======
+        new ExcluirCliente().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         new ExcluirClassificacao();
 
+=======
+        new ExcluirClassificacao().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+=======
+        new ExcluirDVD().setVisible(true);
+>>>>>>> 113c242a7241e3b352d0f642f712813f16b6648b
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     /**
