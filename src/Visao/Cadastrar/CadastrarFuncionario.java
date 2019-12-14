@@ -236,7 +236,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
             Connection con = Conexao.AbrirConexao();
             FuncionarioDAO sql = new FuncionarioDAO(con);
             Funcionario a = new Funcionario();
-            
+            //a
             a.setNome(nome);
             a.setLogin(login);
             a.setSenha(senha);
