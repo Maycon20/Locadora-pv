@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import java.util.*;
 import Modelo.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +21,6 @@ public class FuncionarioDAO extends ExecuteSQL {
     public FuncionarioDAO(Connection con) {
         super(con);
     }
-    
     
     public boolean Logar(String login, String senha){
         boolean finalResult = false;
@@ -66,6 +66,93 @@ public class FuncionarioDAO extends ExecuteSQL {
             return e.getMessage();
         }
     }
+    
+     public List<Funcionario> ListarFuncionario() {
+        String sql = "select idfuncionario,nome,login,senha from funcionario";
+        List<Funcionario> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Funcionario a = new Funcionario();
+                    a.setCod(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setLogin(rs.getString(3));
+                    a.setSenha(rs.getString(4));
+                
+                    Lista.add(a);
+                }
+                return Lista;
+                
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public List<Funcionario> Pesquisar_Nome_Funcionario(String nome) {
+        String sql = "select idfuncionario,nome,login,senha from funcionario where nome like '%"+ nome +"%'";
+        List<Funcionario> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Funcionario a = new Funcionario();
+                    a.setCod(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setLogin(rs.getString(3));
+                    a.setSenha(rs.getString(4));
+                
+                    Lista.add(a);
+                }
+                
+                return Lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public List<Funcionario> Pesquisar_Cod_Funcionario(int cod) {
+        String sql = "select idfuncionario,nome,login,senha from funcionario where idfuncionario ="+ cod +"";
+        List<Funcionario> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Funcionario a = new Funcionario();
+                    a.setCod(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setLogin(rs.getString(3));
+                    a.setSenha(rs.getString(4));
+                
+                    Lista.add(a);
+                }
+                
+                return Lista;
+                
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+    }
 }
 
-
+    

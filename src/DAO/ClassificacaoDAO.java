@@ -5,9 +5,11 @@
  */
 package DAO;
 
+import java.util.*;
 import Modelo.Classificacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -41,5 +43,88 @@ public class ClassificacaoDAO extends ExecuteSQL {
             return e.getMessage();
         }
          
+    }
+     
+     public List<Classificacao> ListarClassificacao() {
+        String sql = "select idclassificacao,nome,preco from classificacao";
+        List<Classificacao> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Classificacao a = new Classificacao();
+                    a.setCodigo(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setPreco(rs.getDouble(3));
+                    
+                    Lista.add(a);
+                }
+                return Lista;
+                
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public List<Classificacao> Pesquisar_Nome_Cliente(String nome) {
+        String sql = "select idclassificacao,nome,preco from classificacao where nome like '%"+ nome +"%'";
+        List<Classificacao> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Classificacao a = new Classificacao();
+                    a.setCodigo(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setPreco(rs.getDouble(3));
+                
+                    Lista.add(a);
+                }
+                return Lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public List<Classificacao> Pesquisar_Cod_Cliente(int cod) {
+        String sql = "select idclassificacao,nome,preco from classificacao where idclassificacao like '%"+ cod +"%'";
+        List<Classificacao> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Classificacao a = new Classificacao();
+                    a.setCodigo(rs.getInt(1));
+                    a.setNome(rs.getString(2));
+                    a.setPreco(rs.getDouble(3));
+                
+                    Lista.add(a);
+                }
+                
+                return Lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
     }
 }
