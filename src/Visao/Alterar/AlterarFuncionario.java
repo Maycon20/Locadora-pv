@@ -5,7 +5,13 @@
  */
 package Visao.Alterar;
 
+import Modelo.*;
+import java.util.*;
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
 import Visao.Cadastrar.*;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +28,22 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    private void InserirDados(int cod){
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        lista = sql.CapturarFuncionario(cod);
+        
+        for (Funcionario a : lista) {
+            jTextField1.setText("" + a.getCod());
+            jTextField2.setText(a.getNome());
+            jTextField3.setText(a.getLogin());
+            jTextField4.setText(a.getSenha());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +103,11 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Alterar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
@@ -194,7 +221,18 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         jLabel7.setText("Digite o Código:");
 
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
         jButton4.setText("OK");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -215,9 +253,12 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4))
                 .addGap(19, 19, 19))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,6 +288,69 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String codigo = jTextField5.getText();
+        
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        int cod = Integer.parseInt(codigo);
+        
+        if (sql.Testar_Funcionario(cod) == false) {
+            JOptionPane.showMessageDialog(null, "Codigo não Encontrado no Banco", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+            Conexao.FecharConexao(con);
+        }
+        
+        if (codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite um Codigo para Atualizar", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        
+        InserirDados(cod);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String codigo = jTextField1.getText();
+        String nome = jTextField2.getText();
+        String login = jTextField3.getText();
+        String senha = jTextField4.getText();
+        
+        if (nome.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Connection con = Conexao.AbrirConexao();
+            FuncionarioDAO sql = new FuncionarioDAO(con);
+            
+            int cod = Integer.parseInt(codigo);
+            
+            Funcionario a = new Funcionario();
+            a.setCod(cod);
+            a.setNome(nome);
+            a.setLogin(login);
+            a.setSenha(senha);
+            
+            sql.Alterar_Funcionario(a);
+            Conexao.FecharConexao(con);
+            
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

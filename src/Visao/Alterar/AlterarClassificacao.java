@@ -5,7 +5,13 @@
  */
 package Visao.Alterar;
 
+import java.util.*;
+import Modelo.*;
+import DAO.ClassificacaoDAO;
+import DAO.Conexao;
 import Visao.Cadastrar.*;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +26,21 @@ public class AlterarClassificacao extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
+    }
+    
+    private void InserirDados(int cod){
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        List<Classificacao> lista = new ArrayList<>();
+        lista = sql.CapturarClassificacao(cod);
+        
+        for (Classificacao a : lista) {
+            jTextField1.setText("" + a.getCodigo());
+            jTextField2.setText(a.getNome());
+            jTextField3.setText("" + a.getPreco());
+        }
+        
+        Conexao.FecharConexao(con);
     }
 
     /**
@@ -170,6 +191,11 @@ public class AlterarClassificacao extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Alterar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
@@ -205,7 +231,18 @@ public class AlterarClassificacao extends javax.swing.JFrame {
 
         jLabel8.setText("Digite o Código:");
 
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
+
         jButton7.setText("OK");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -259,6 +296,62 @@ public class AlterarClassificacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String codigo = jTextField7.getText();
+        
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        int cod = Integer.parseInt(codigo);
+        
+        if (sql.Testar_Classificacao(cod) == false) {
+            JOptionPane.showMessageDialog(null, "Codigo não Encontrado no Banco", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+            Conexao.FecharConexao(con);
+        }
+        
+        if (codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Digite um Codigo para Atualizar", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        InserirDados(cod);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String codigo = jTextField1.getText();
+        String nome = jTextField2.getText();
+        String preco = jTextField3.getText();
+        
+        if (nome.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Connection con = Conexao.AbrirConexao();
+            ClassificacaoDAO sql = new ClassificacaoDAO(con);
+            
+            int cod = Integer.parseInt(codigo);
+            double pre = Double.parseDouble(preco);
+            
+            Classificacao a = new Classificacao();
+            a.setCodigo(cod);
+            a.setNome(nome);
+            a.setPreco(pre);
+            
+            sql.Alterar_Classificacao(a);
+            Conexao.FecharConexao(con);
+            
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,30 +392,22 @@ public class AlterarClassificacao extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
