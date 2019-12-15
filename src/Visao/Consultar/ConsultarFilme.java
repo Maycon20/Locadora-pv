@@ -5,6 +5,13 @@
  */
 package Visao.Consultar;
 
+import java.util.*;
+import Modelo.*;
+import DAO.Conexao;
+import DAO.FilmeDAO;
+import java.sql.Connection;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Betty
@@ -18,6 +25,35 @@ public class ConsultarFilme extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        AtualizaTable();
+    }
+    
+    public void AtualizaTable() {
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO bd = new FilmeDAO(con);
+        List<Filme> lista = new ArrayList<>();
+        lista = bd.ListarFilme();
+        
+        DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
+        
+        while (tbm.getRowCount() > 0) {
+            tbm.removeRow(0);
+        }
+
+        int i = 0;
+        for (Filme tab : lista) {
+            tbm.addRow(new String[i]);
+            jTable1.setValueAt(tab.getCodigo(), i, 0);
+            jTable1.setValueAt(tab.getTitulo(), i, 1);
+            jTable1.setValueAt(tab.getAno(), i, 2);
+            jTable1.setValueAt(tab.getDuracao(), i, 3);
+            jTable1.setValueAt(tab.getNome_categoria(), i, 4);
+            jTable1.setValueAt(tab.getNomeClassificacao(), i, 5);
+            
+            i++;
+        }
+        
+        Conexao.FecharConexao(con);
     }
 
     /**
@@ -73,6 +109,11 @@ public class ConsultarFilme extends javax.swing.JFrame {
         });
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa1.png"))); // NOI18N
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Pesquisa por Código");
@@ -84,9 +125,19 @@ public class ConsultarFilme extends javax.swing.JFrame {
         });
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa1.png"))); // NOI18N
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jButton15.setText("Todos");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -155,6 +206,72 @@ public class ConsultarFilme extends javax.swing.JFrame {
     private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        String nome = jTextField10.getText();
+        
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO bd = new FilmeDAO(con);
+        List<Filme> lista = new ArrayList<>();
+        lista = bd.Pesquisar_Nome_Filme(nome);
+        
+        DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
+        
+        while (tbm.getRowCount() > 0) {
+            tbm.removeRow(0);
+        }
+
+        int i = 0;
+        for (Filme tab : lista) {
+            tbm.addRow(new String[i]);
+            jTable1.setValueAt(tab.getCodigo(), i, 0);
+            jTable1.setValueAt(tab.getTitulo(), i, 1);
+            jTable1.setValueAt(tab.getAno(), i, 2);
+            jTable1.setValueAt(tab.getDuracao(), i, 3);
+            jTable1.setValueAt(tab.getNome_categoria(), i, 4);
+            jTable1.setValueAt(tab.getNomeClassificacao(), i, 5);
+            
+            i++;
+        }
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        String codigo = jTextField11.getText();
+
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO bd = new FilmeDAO(con);
+        List<Filme> lista = new ArrayList<>();
+        lista = bd.Pesquisar_Cod_Filme(Integer.parseInt(codigo));
+        
+        DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
+        
+        while (tbm.getRowCount() > 0) {
+            tbm.removeRow(0);
+        }
+
+        int i = 0;
+        for (Filme tab : lista) {
+            tbm.addRow(new String[i]);
+            jTable1.setValueAt(tab.getCodigo(), i, 0);
+            jTable1.setValueAt(tab.getTitulo(), i, 1);
+            jTable1.setValueAt(tab.getAno(), i, 2);
+            jTable1.setValueAt(tab.getDuracao(), i, 3);
+            jTable1.setValueAt(tab.getNome_categoria(), i, 4);
+            jTable1.setValueAt(tab.getNomeClassificacao(), i, 5);
+            
+            i++;
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        AtualizaTable();
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -225,8 +225,7 @@ public class FuncionarioDAO extends ExecuteSQL {
     }
     
     
-    
-    
+   
     
     public boolean Testar_Funcionario(int cod) {
         boolean Resultado = false;

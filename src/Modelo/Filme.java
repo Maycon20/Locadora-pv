@@ -1,4 +1,5 @@
-/*
+
+        /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -17,7 +18,27 @@ public class Filme {
     private int cod_categoria;
     private int cod_classificacao;
     private String capa;
+    private String nomeClassificacao;
+    private String nome_categoria;
 
+    public String getNomeClassificacao() {
+        return nomeClassificacao;
+    }
+
+    public void setNomeClassificacao(String nomeClassificacao) {
+        this.nomeClassificacao = nomeClassificacao;
+    }
+
+    public String getNome_categoria() {
+        return nome_categoria;
+    }
+
+    public void setNome_categoria(String nome_categoria) {
+        this.nome_categoria = nome_categoria;
+    }
+    
+    
+    
     public int getCodigo() {
         return codigo;
     }
