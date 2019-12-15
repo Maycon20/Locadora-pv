@@ -28,7 +28,6 @@ public class CadastrarDVD extends javax.swing.JFrame {
      */
     public CadastrarDVD() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
         AtualizaCombo();
     }
@@ -113,6 +112,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
 
         jLabel7.setText("Filme:");
 
+        jTf_CodFilme.setEditable(false);
         jTf_CodFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTf_CodFilmeActionPerformed(evt);
@@ -218,9 +218,19 @@ public class CadastrarDVD extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -309,7 +319,8 @@ public class CadastrarDVD extends javax.swing.JFrame {
         String situacao = jTf_Situacao.getText();
         
         if (codFilme.equals("") || preco.equals("") || situacao.equals("")){
-            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!",
+                    "Video Locadora", JOptionPane.WARNING_MESSAGE);
         } else {
             double precoCompra = Double.parseDouble(preco);
             int codF = Integer.parseInt(codFilme);
@@ -330,10 +341,25 @@ public class CadastrarDVD extends javax.swing.JFrame {
             //.setToolTipText("");
             jTf_Situacao.setText("");
             
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!",
+                    "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTf_CodFilme.setText("");
+            jTf_PrecoCompra.setText("");
+            //.setToolTipText("");
+            jTf_Situacao.setText("");
+            
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

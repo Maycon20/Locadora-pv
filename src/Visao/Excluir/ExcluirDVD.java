@@ -97,6 +97,8 @@ public class ExcluirDVD extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setEditable(false);
+
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

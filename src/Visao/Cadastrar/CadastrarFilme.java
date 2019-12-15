@@ -34,7 +34,6 @@ public class CadastrarFilme extends javax.swing.JFrame {
      */
     public CadastrarFilme() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
         AtualizaComboCat();
         AtualizaComboClass();
@@ -91,8 +90,8 @@ public class CadastrarFilme extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTF_Duracao = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTF_CodCategoria = new javax.swing.JTextField();
         jComboCat = new javax.swing.JComboBox<>();
+        jTF_CodCategoria = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTF_CodClassificacao = new javax.swing.JTextField();
         jComboClass = new javax.swing.JComboBox<>();
@@ -161,20 +160,22 @@ public class CadastrarFilme extends javax.swing.JFrame {
 
         jLabel7.setText("Categoria:");
 
-        jTF_CodCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTF_CodCategoriaActionPerformed(evt);
-            }
-        });
-
         jComboCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboCatActionPerformed(evt);
             }
         });
 
+        jTF_CodCategoria.setEditable(false);
+        jTF_CodCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_CodCategoriaActionPerformed(evt);
+            }
+        });
+
         jLabel8.setText("Classificação:");
 
+        jTF_CodClassificacao.setEditable(false);
         jTF_CodClassificacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_CodClassificacaoActionPerformed(evt);
@@ -186,6 +187,8 @@ public class CadastrarFilme extends javax.swing.JFrame {
                 jComboClassActionPerformed(evt);
             }
         });
+
+        jTF_Capa.setEditable(false);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Capa:");
@@ -295,9 +298,19 @@ public class CadastrarFilme extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -433,7 +446,8 @@ public class CadastrarFilme extends javax.swing.JFrame {
         
         if (titulo.equals("") || titulo.equals("") || titulo.equals("") ||
         titulo.equals("") || titulo.equals("") || titulo.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!",
+                    "Video Locadora", JOptionPane.WARNING_MESSAGE);
         } else {
             Connection con = Conexao.AbrirConexao();
             FilmeDAO sql = new FilmeDAO(con);
@@ -459,10 +473,27 @@ public class CadastrarFilme extends javax.swing.JFrame {
             jTF_CodClassificacao.setText("");
             jTF_Capa.setText("");
             
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!",
+                    "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTF_Titulo.setText("");
+            jTF_Ano.setText("");
+            jTF_Duracao.setText("");
+            jTF_CodCategoria.setText("");
+            jTF_CodClassificacao.setText("");
+            jTF_Capa.setText("");
+            
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,15 @@
  */
 package Locacao;
 
+import DAO.AlugelDAO;
+import DAO.Conexao;
+import DAO.DVDDA;
+import Modelo.*;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Betty
@@ -16,8 +25,33 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
      */
     public ConsultaDevolucao() {
         initComponents();
+        setLocationRelativeTo(this);
+        AtualizaTable();
     }
 
+    public void AtualizaTable() {
+        Connection con = Conexao.AbrirConexao();
+        AlugelDAO bd = new AlugelDAO(con);
+        List<Aluguel> lista = new ArrayList<>();
+        lista = bd.ListarAluguel();
+        
+        DefaultTableModel tbm = (DefaultTableModel) jTable1.getModel();
+        while (tbm.getRowCount() > 0) {
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Aluguel tab : lista) {
+            tbm.addRow(new String[i]);
+            jTable1.setValueAt(tab.getCod(), i, 0);
+            jTable1.setValueAt(tab.getCoddvd(), i, 1);
+            jTable1.setValueAt(tab.getCodcliente(), i, 2);
+            jTable1.setValueAt(tab.getHorario(), i, 3);
+            jTable1.setValueAt(tab.getData_aluguel(), i, 4);
+            jTable1.setValueAt(tab.getData_devolucao(), i, 5);
+            
+            i++;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +77,11 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
                 "Código", "Cliente", "DVD", "Horario", "Locação", "Devolucao"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Cliente:");
@@ -87,6 +126,22 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        Integer linha = jTable1.getSelectedRow();
+        Integer idaluguel = (Integer) jTable1.getValueAt(linha, 0);
+        Integer idcliente = (Integer) jTable1.getValueAt(linha, 1);
+        Integer iddvd = (Integer) jTable1.getValueAt(linha, 2);
+        
+        Listar a = new Listar();
+        a.setCoddvd(iddvd);
+        a.setCodaluguel(idaluguel);
+        a.setCodcliente(idcliente);
+        
+        new EfetuarDevolocao().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

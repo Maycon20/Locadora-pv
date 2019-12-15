@@ -24,7 +24,6 @@ public class AlterarCliente extends javax.swing.JFrame {
      */
     public AlterarCliente() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
     }
 
@@ -123,6 +122,7 @@ public class AlterarCliente extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nº do Cliente:");
 
+        jTF_NumCli.setEditable(false);
         jTF_NumCli.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -304,6 +304,11 @@ public class AlterarCliente extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Limpar");
@@ -446,7 +451,8 @@ public class AlterarCliente extends javax.swing.JFrame {
         String cpf = jTF_CPF.getText();
         
         if (nome.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio",
+                    "Video Locadora", JOptionPane.ERROR_MESSAGE);
         } else {
             Connection con = Conexao.AbrirConexao();
             ClienteDAO sql = new ClienteDAO(con);
@@ -482,10 +488,16 @@ public class AlterarCliente extends javax.swing.JFrame {
             jTF_RG.setText("");
             jTF_CPF.setText("");
             
-            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", "Video Locadora",
+                    JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

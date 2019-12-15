@@ -22,7 +22,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
      */
     public CadastrarCliente() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
     }
 
@@ -95,6 +94,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nº do Cliente:");
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -254,6 +254,11 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -320,7 +325,8 @@ public class CadastrarCliente extends javax.swing.JFrame {
         if (nome.equals("") || nascimento.equals("") || cep.equals("") || rua.equals("") || numero.equals("")
         || bairro.equals("")  || email.equals("") || fone.equals("") || cpf.equals("") || rg.equals("")) {
             
-            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio!",
+                    "Video Locadora", JOptionPane.WARNING_MESSAGE);
             
         } else {
             Connection con = Conexao.AbrirConexao();
@@ -353,7 +359,8 @@ public class CadastrarCliente extends javax.swing.JFrame {
             jTF_CPF.setText("");
             jTF_RG.setText("");
             
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", 
+                    "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -361,6 +368,20 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private void jTF_RGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_RGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTF_RGActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTF_Nome.setText("");
+            jTF_Data.setText("");
+            jTF_CEP.setText("");
+            jTF_Rua.setText("");
+            jTF_Numero.setText("");
+            jTF_Bairro.setText("");
+            jTF_Email.setText("");
+            jTF_Telefone.setText("");
+            jTF_CPF.setText("");
+            jTF_RG.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -26,7 +26,6 @@ public class AlterarDVD extends javax.swing.JFrame {
      */
     public AlterarDVD() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
         AtualizaCombo();
     }
@@ -134,6 +133,7 @@ public class AlterarDVD extends javax.swing.JFrame {
 
         jLabel7.setText("Filme:");
 
+        jTF_CodFilme.setEditable(false);
         jTF_CodFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_CodFilmeActionPerformed(evt);
@@ -257,9 +257,19 @@ public class AlterarDVD extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -385,12 +395,14 @@ public class AlterarDVD extends javax.swing.JFrame {
         int cod = Integer.parseInt(codigo);
         
         if (sql.Testar_DVD(cod) == false) {
-            JOptionPane.showMessageDialog(null, "Codigo não Encontrado no Banco", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Codigo não Encontrado no Banco",
+                    "Video Locadora", JOptionPane.ERROR_MESSAGE);
             Conexao.FecharConexao(con);
         }
         
         if (codigo.equals("")) {
-            JOptionPane.showMessageDialog(null, "Digite um Codigo para Atualizar", "Video Locadora", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Digite um Codigo para Atualizar",
+                    "Video Locadora", JOptionPane.ERROR_MESSAGE);
         }
         
         jTF_Cod.setText("");
@@ -446,6 +458,20 @@ public class AlterarDVD extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTF_Cod.setText("");
+            jTF_CodFilme.setText("");
+            jTF_Situacao.setText("");
+            jTF_Data.setText("");
+            jTF_Preco.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

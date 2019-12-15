@@ -25,7 +25,6 @@ public class AlterarFilme extends javax.swing.JFrame {
      */
     public AlterarFilme() {
         initComponents();
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(this);
         AtualizaComboCat();
         AtualizaComboClass();
@@ -181,6 +180,7 @@ public class AlterarFilme extends javax.swing.JFrame {
 
         jLabel7.setText("Categoria:");
 
+        jTF_CodCategoria.setEditable(false);
         jTF_CodCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_CodCategoriaActionPerformed(evt);
@@ -195,6 +195,7 @@ public class AlterarFilme extends javax.swing.JFrame {
 
         jLabel8.setText("Classificação:");
 
+        jTF_CodClass.setEditable(false);
         jTF_CodClass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_CodClassActionPerformed(evt);
@@ -206,6 +207,8 @@ public class AlterarFilme extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
+
+        jTF_Capa.setEditable(false);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Capa:");
@@ -320,9 +323,19 @@ public class AlterarFilme extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -562,10 +575,27 @@ public class AlterarFilme extends javax.swing.JFrame {
             jTF_CodClass.setText("");
             jTF_Capa.setText("");
             
-            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso",
+                    "Video Locadora", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTF_Cod.setText("");
+        jTF_Titulo.setText("");
+        jTF_Ano.setText("");
+        jTF_Duracao.setText("");
+        jTF_CodCategoria.setText("");
+        jTF_CodClass.setText("");
+        jLabCapa.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

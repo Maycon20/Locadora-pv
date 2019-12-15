@@ -95,6 +95,8 @@ public class ExcluirFilme extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setEditable(false);
+
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,10 +184,12 @@ public class ExcluirFilme extends javax.swing.JFrame {
         Filme a = new Filme();
         
         if (nome.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nenhum nome selecionado", "Video Locadora", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Nenhum nome selecionado",
+                    "Video Locadora", JOptionPane.WARNING_MESSAGE);
         } else {
             
-            int b = JOptionPane.showConfirmDialog(null,"Deseja realmente excluir "+ nome +" | "+ codigo +"?", "Video Locadora",
+            int b = JOptionPane.showConfirmDialog(null,"Deseja realmente excluir "+ nome +" | "+ codigo +"?",
+                    "Video Locadora",
             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             
             if (b == 0) {

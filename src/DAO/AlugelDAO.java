@@ -180,4 +180,40 @@ public class AlugelDAO extends ExecuteSQL {
             return null;
         }
     }
+    
+    public String Excluir_Aluguel(Aluguel a){
+        String sql = "delete from aluguel where idaluguel = ?";
+       
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ps.setInt(1, a.getCod());
+
+            if (ps.executeUpdate() > 0) {
+                return "Excluido com sucesso";
+            } else {
+                return "Erro ao excluir";
+            }
+
+        } catch (SQLException ex) {
+            return ex.getMessage();
+        }
+    }
+    
+    public String Atualiza_Situacao(Aluguel a){
+        String sql = "update dvd set situacao='Disponivel' WHERE iddvd = ?";
+        
+        try {
+           PreparedStatement ps = getCon().prepareStatement(sql);
+           ps.setInt(1, a.getCoddvd());
+           
+            if (ps.executeUpdate() > 0) {
+                return "Atualizado com sucesso";
+            } else {
+                return "Erro ao Atualizar";
+            }
+           
+        } catch (SQLException e) {
+            return e.getMessage(); 
+        }
+   } 
 }

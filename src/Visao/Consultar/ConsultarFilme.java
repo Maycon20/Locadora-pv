@@ -24,7 +24,6 @@ public class ConsultarFilme extends javax.swing.JFrame {
     public ConsultarFilme() {
         initComponents();
         setLocationRelativeTo(this);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         AtualizaTable();
     }
     

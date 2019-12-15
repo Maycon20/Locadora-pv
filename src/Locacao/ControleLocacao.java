@@ -33,7 +33,6 @@ public class ControleLocacao extends javax.swing.JFrame {
     public ControleLocacao() {
         initComponents();
         setLocationRelativeTo(this);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         AtualizaCombo();
         AtualizaTable();
     }
@@ -173,6 +172,7 @@ public class ControleLocacao extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jTF_Hora.setEditable(false);
         try {
             jTF_Hora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
@@ -199,6 +199,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8.setText("Título:");
 
+        jTF_Titulo.setEditable(false);
         jTF_Titulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_TituloActionPerformed(evt);
@@ -208,6 +209,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Categoria:");
 
+        jTF_Categoria.setEditable(false);
         jTF_Categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_CategoriaActionPerformed(evt);
@@ -217,6 +219,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Classificação:");
 
+        jTF_Classificacao.setEditable(false);
         jTF_Classificacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_ClassificacaoActionPerformed(evt);
@@ -226,6 +229,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setText("Valor do aluguel:");
 
+        jTF_Aluguel.setEditable(false);
         jTF_Aluguel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_AluguelActionPerformed(evt);
@@ -235,6 +239,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Cliente:");
 
+        jTF_Cliente.setEditable(false);
         jTF_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTF_ClienteActionPerformed(evt);
@@ -250,6 +255,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("Data da Locação:");
 
+        jTF_DataLocacao.setEditable(false);
         try {
             jTF_DataLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -268,6 +274,13 @@ public class ControleLocacao extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTF_CodigoDVD.setEditable(false);
+        jTF_CodigoDVD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTF_CodigoDVDActionPerformed(evt);
             }
         });
 
@@ -385,6 +398,11 @@ public class ControleLocacao extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Limpar");
@@ -864,6 +882,15 @@ public class ControleLocacao extends javax.swing.JFrame {
         }
         Conexao.FecharConexao(con);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTF_CodigoDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_CodigoDVDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTF_CodigoDVDActionPerformed
 
     /**
      * @param args the command line arguments

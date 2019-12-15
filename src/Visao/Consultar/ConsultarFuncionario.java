@@ -24,7 +24,6 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
     public ConsultarFuncionario() {
         initComponents();
         setLocationRelativeTo(this);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         AtualizaTable();
     }
 
