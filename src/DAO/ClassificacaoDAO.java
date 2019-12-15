@@ -270,6 +270,30 @@ public class ClassificacaoDAO extends ExecuteSQL {
     }
     
     
-    
+    public List<Classificacao> ListarPrecoClassificacao(int cod){
+        String sql = "select preco from classificacao where idclassificacao = "+ cod +"";
+        List<Classificacao> lista = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps .executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Classificacao a = new Classificacao();
+                    a.setPreco(rs.getInt(1));
+                    
+                    lista.add(a);
+                }
+            
+                return lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
     
 }

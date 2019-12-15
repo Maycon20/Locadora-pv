@@ -292,4 +292,38 @@ public class FilmeDAO extends ExecuteSQL {
             return e.getMessage();
         }
     }
+    
+    public List<Filme> Pesquisa_Cod_Filme(int cod) {
+        String sql = "select idfilme,titulo,ano,duracao,idcategoria,idclassificacao,capa from filme where idfilme = "+ cod +"";
+        List<Filme> Lista = new ArrayList<>();
+           
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                
+                while (rs.next()) {
+                    Filme a = new Filme();
+                    a.setCodigo(rs.getInt(1));
+                    a.setTitulo(rs.getString(2));
+                    a.setAno(rs.getInt(3));
+                    a.setDuracao(rs.getString(4));
+                    a.setCod_categoria(rs.getInt(5));
+                    a.setCod_classificacao(rs.getInt(6));
+                    a.setCapa(rs.getString(7));
+                    
+                    Lista.add(a);
+                }
+                
+                return Lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+ 
 }

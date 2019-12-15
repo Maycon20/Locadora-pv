@@ -222,4 +222,52 @@ public class DVDDA extends ExecuteSQL {
             return e.getMessage();
         }
     }
+    
+    public boolean Testar_Situacao( int cod) {
+        boolean teste = false; 
+            
+        try {
+            String sql = "Select iddvd from dvd where iddvd="+ cod +""
+                    +" and situacao = 'Disponivel'";
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    teste= true;
+                }
+            }
+            
+        } catch (SQLException ex) {
+        }
+        
+        return teste;
+    }
+    
+    public List<DVD> ListarCodFilme(int cod){
+        String sql = "select idfilme from dvd where iddvd = "+ cod +"";
+        List<DVD> lista = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps .executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    DVD a = new DVD();
+                    a.setCod_filme(rs.getInt(1));
+                    
+                    lista.add(a);
+                }
+            
+                return lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
 }
