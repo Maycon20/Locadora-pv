@@ -212,4 +212,84 @@ public class FilmeDAO extends ExecuteSQL {
             return null; 
         }
     }
+    
+    public boolean Testar_Filme(int cod) {
+        boolean Resultado = false;
+        
+        try {
+            String sql = "select * from filme where idfilme = "+ cod +"";
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Resultado = true;
+                }
+            }
+            
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return Resultado;
+    }
+    
+    public List<Filme> CapturarFilme(int cod){
+        String sql = "select * from filme where idfilme = "+ cod +"";
+        List<Filme> lista = new ArrayList<>();
+        
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Filme a = new Filme();
+                    
+                    a.setCodigo(rs.getInt(1));
+                    a.setTitulo(rs.getString(2));
+                    a.setAno(rs.getInt(3));
+                    a.setDuracao(rs.getString(4));
+                    a.setCod_categoria(rs.getInt(5));
+                    a.setCod_classificacao(rs.getInt(6));
+                    a.setCapa(rs.getString(7));
+                    
+                    System.out.println(""+rs.getInt(6));
+                    
+                    lista.add(a);
+                }
+                
+                return lista;
+            } else {
+                return null;
+            }
+            
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public String Alterar_Filme(Filme a) {
+        String sql = "update filme set titulo = ? ,ano = ? ,duracao = ?"
+                + " ,idcategoria = ? ,idclassificacao = ? ,capa = ?  where idfilme = ? ";
+        
+        try {
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ps.setString(1, a.getTitulo());
+            ps.setInt(2, a.getAno());
+            ps.setString(3, a.getDuracao());
+            ps.setInt(4, a.getCod_categoria());
+            ps.setInt(5, a.getCod_classificacao());
+            ps.setString(6, a.getCapa());
+            ps.setInt(7, a.getCodigo());
+            
+            if (ps.executeUpdate() > 0) {
+                return "Atualizado com sucesso!";
+            } else {
+                return "Erro ao Atualizar!";
+            }
+            
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
+    }
 }
