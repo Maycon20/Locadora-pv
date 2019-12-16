@@ -26,6 +26,7 @@ public class ConsultarDVD extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         AtualizaTable();
         setResizable(false);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     public void AtualizaTable() {

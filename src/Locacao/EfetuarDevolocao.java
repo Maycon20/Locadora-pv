@@ -29,6 +29,7 @@ public class EfetuarDevolocao extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         teste();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     private void teste() {
         Listar a = new Listar();

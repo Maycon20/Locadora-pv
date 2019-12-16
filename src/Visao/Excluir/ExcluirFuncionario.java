@@ -24,6 +24,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
     public ExcluirFuncionario() {
         initComponents();
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void AtualizaCombo(){

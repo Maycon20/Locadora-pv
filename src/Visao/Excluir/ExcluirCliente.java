@@ -24,6 +24,7 @@ public class ExcluirCliente extends javax.swing.JFrame {
     public ExcluirCliente() {
         initComponents();
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void AtualizaCombo(){

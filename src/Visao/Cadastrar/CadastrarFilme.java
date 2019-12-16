@@ -37,6 +37,7 @@ public class CadastrarFilme extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         AtualizaComboCat();
         AtualizaComboClass();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void AtualizaComboCat(){

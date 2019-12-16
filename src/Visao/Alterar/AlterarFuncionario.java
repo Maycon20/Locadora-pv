@@ -25,6 +25,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     public AlterarFuncionario() {
         initComponents();
         setLocationRelativeTo(this);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void InserirDados(int cod){

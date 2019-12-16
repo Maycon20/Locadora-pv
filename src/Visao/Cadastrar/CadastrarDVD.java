@@ -30,6 +30,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     public void AtualizaCombo(){
         Connection con = Conexao.AbrirConexao();

@@ -35,6 +35,7 @@ public class ControleLocacao extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         AtualizaCombo();
         AtualizaTable();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     public void AtualizaTable() {

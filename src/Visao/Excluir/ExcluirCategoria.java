@@ -24,6 +24,7 @@ public class ExcluirCategoria extends javax.swing.JFrame {
     public ExcluirCategoria() {
         initComponents();
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     public void AtualizaCombo(){

@@ -23,6 +23,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
     public CadastrarCategoria() {
         initComponents();
         setLocationRelativeTo(this);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

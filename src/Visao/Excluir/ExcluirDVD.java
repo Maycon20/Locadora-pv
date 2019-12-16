@@ -28,6 +28,7 @@ public class ExcluirDVD extends javax.swing.JFrame {
     public ExcluirDVD() {
         initComponents();
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void AtualizaCombo(){

@@ -25,6 +25,7 @@ public class ExcluirFilme extends javax.swing.JFrame {
     public ExcluirFilme() {
         initComponents();
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void AtualizaCombo(){

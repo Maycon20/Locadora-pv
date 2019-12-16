@@ -25,6 +25,7 @@ public class AlterarCategoria extends javax.swing.JFrame {
     public AlterarCategoria() {
         initComponents();
         setLocationRelativeTo(this);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void InserirDados(int cod){

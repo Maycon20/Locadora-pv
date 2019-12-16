@@ -28,6 +28,7 @@ public class AlterarDVD extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         AtualizaCombo();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
     private void InserirDados(int cod){

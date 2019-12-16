@@ -25,6 +25,7 @@ public class AlterarCliente extends javax.swing.JFrame {
     public AlterarCliente() {
         initComponents();
         setLocationRelativeTo(this);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void InserirDados(int cod){
